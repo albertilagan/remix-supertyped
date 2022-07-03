@@ -1,0 +1,80 @@
+{
+  "name": "remix-superjson",
+  "version": "0.0.1",
+  "description": "Typescript support for Remix's loader and action data + superjson",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "postinstall": "remix setup node",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertilagan/remix-superjson.git"
+  },
+  "module": "dist/remix-superjson.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/remix-superjson.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/remix-superjson.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "keywords": [
+    "remix",
+    "superjson",
+    "typescript",
+    "type-safety"
+  ],
+  "author": "Albert Ilagan <albertilagan0018@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/albertilagan/remix-superjson/issues"
+  },
+  "homepage": "https://github.com/albertilagan/remix-superjson#readme",
+  "dependencies": {
+    "@remix-run/node": "^1.6.1",
+    "@remix-run/react": "^1.6.1",
+    "superjson": "^1.9.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.6.3",
+    "@remix-run/serve": "^1.6.3",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "size-limit": "^7.0.8",
+    "standard-version": "^9.5.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  },
+  "peerDependencies": {
+    "remix": ">=1.2.3"
+  }
+}
