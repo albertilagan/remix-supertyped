@@ -1,6 +1,7 @@
-import type { DataFunctionArgs, HtmlMetaDescriptor, MetaFunction } from '@remix-run/node';
-import { json as remixJson } from '@remix-run/node';
+import type { DataFunctionArgs, HtmlMetaDescriptor, MetaFunction } from '@remix-run/server-runtime';
+import { json as remixJson } from '@remix-run/server-runtime';
 import { useActionData as useRemixActionData, useLoaderData as useRemixLoaderData } from '@remix-run/react';
+
 import superjson from 'superjson';
 import type { SuperJSONResult } from 'superjson/dist/types';
 

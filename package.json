@@ -1,5 +1,5 @@
 {
-  "name": "remix-typed",
+  "name": "remix-supertyped",
   "version": "0.0.1",
   "description": "Typescript support for Remix's loader and action data + superjson",
   "main": "dist/index.js",
@@ -34,16 +34,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/albertilagan/remix-typed.git"
+    "url": "git+https://github.com/albertilagan/remix-supertyped.git"
   },
-  "module": "dist/remix-typed.esm.js",
+  "module": "dist/remix-supertyped.esm.js",
   "size-limit": [
     {
-      "path": "dist/remix-typed.cjs.production.min.js",
+      "path": "dist/remix-supertyped.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/remix-typed.esm.js",
+      "path": "dist/remix-supertyped.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -56,13 +56,13 @@
   "author": "Albert Ilagan <albertilagan0018@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/albertilagan/remix-typed/issues"
+    "url": "https://github.com/albertilagan/remix-supertyped/issues"
   },
-  "homepage": "https://github.com/albertilagan/remix-typed#readme",
+  "homepage": "https://github.com/albertilagan/remix-supertyped#readme",
   "dependencies": {
-    "@remix-run/node": "^1.6.3",
-    "@remix-run/react": "^1.6.3",
-    "superjson": "^1.9.1"
+    "@remix-run/server-runtime": "*",
+    "@remix-run/react": "*",
+    "superjson": "*"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.6.3",
@@ -75,6 +75,7 @@
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "remix": ">=1.2.3"
+    "@remix-run/react": ">=1.5",
+    "react": ">=17"
   }
 }
