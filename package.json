@@ -1,7 +1,7 @@
 {
   "name": "remix-supertyped",
   "version": "0.0.1",
-  "description": "Typescript support for Remix's loader and action data + superjson",
+  "description": "Utilize superjson and improve end-to-end type safety for Remix",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
