@@ -32,3 +32,43 @@ export default function App() {
   ...
 }
 ```
+
+```jsx
+...
+type ActionInput = z.TypeOf<typeof loginSchema>;
+
+export const action = async ({ request }: DataFunctionArgs) => {
+  // Validation
+  const { formData, errors } = await validateAction<ActionInput>(request, loginSchema);
+  if (errors) return jsonError<ActionInput>(errors, { status: 400 });
+
+  // Try login
+  const { email, password } = formData;
+  const user = await login(email, password);
+  if (!user) {
+    return jsonError<ActionInput>({ email: 'Invalid email or password' }, { status: 400 });
+  }
+
+  ...
+};
+
+export const meta = withSuperJson(({ data, location, params, parentsData }) => {
+  ...
+  return {
+    title: 'Login',
+  };
+});
+
+export default function LoginPage() {
+  const actionData = useActionData<typeof action>();
+  // actionData: {
+  //   errors?: Partial<Record<"remember" | requiredKeys<{
+  //       email: string;
+  //       password: string;
+  //       remember: "on" | undefined;
+  //       redirectTo: string;
+  //   }>, string>> | undefined;
+  // }
+  ...
+}
+```
