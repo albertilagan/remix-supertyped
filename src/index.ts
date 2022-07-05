@@ -1,6 +1,6 @@
-import type { DataFunctionArgs, HtmlMetaDescriptor, MetaFunction } from '@remix-run/server-runtime';
-import { json as remixJson } from '@remix-run/server-runtime';
 import { useActionData as useRemixActionData, useLoaderData as useRemixLoaderData } from '@remix-run/react';
+import type { DataFunctionArgs, HtmlMetaDescriptor, MetaFunction } from '@remix-run/server-runtime';
+import { json as remixJson, redirect as remixRedirect } from '@remix-run/server-runtime';
 
 import superjson from 'superjson';
 import type { SuperJSONResult } from 'superjson/dist/types';
@@ -48,4 +48,8 @@ export function withSuperJson<Data>(metaFn: MetaFunction): SuperJsonMetaFunction
   return ({ data, ...rest }: MetaArgs) => {
     return metaFn({ ...rest, data: superjson.deserialize<Data>(data) });
   };
+}
+
+export function redirect(url: string, init?: number | ResponseInit) {
+  return remixRedirect(url, init) as ResponseTyped<never>;
 }

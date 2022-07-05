@@ -17,6 +17,8 @@ pnpm add remix-supertyped
 
 ## Usage
 
+### Loader
+
 ```jsx
 ...
 import { json, useLoaderData } from 'remix-supertyped';
@@ -33,8 +35,61 @@ export default function App() {
 }
 ```
 
+### Redirect
+
+Using `Remix`'s `redirect` which returns `Response` will overwrite our type-safety.
+
+`remix-supertyped`'s `redirect` to the rescue.
+
 ```jsx
 ...
+import { json, redirect, useLoaderData } from 'remix-supertyped';
+
+export const loader = () => {
+  if (!isAuthenticated) {
+    return redirect('/login');
+  }
+
+  return json({ date: new Date() });
+};
+
+export default function Example() {
+  const data = useLoaderData<typeof loader>();
+  ...
+}
+
+```
+
+```jsx
+/* with remix's redirect + remix-supertyped's loader */
+data: any;
+
+/* remix-supertyped's redirect and loader */
+data: {
+  date: Date;
+}
+```
+
+### Meta
+
+Since we are serializing the data using `superjson` we need to `deserialize` it as well for the `meta` export.
+
+```jsx
+import { withSuperJson } from 'remix-supertyped';
+export const meta = withSuperJson(({ data, location, params, parentsData }) => {
+  ...
+  return {
+    title: 'Login',
+  };
+});
+```
+
+### Action
+
+```jsx
+...
+import { jsonError, useActionData } from 'remix-supertyped';
+
 type ActionInput = z.TypeOf<typeof loginSchema>;
 
 export const action = async ({ request }: DataFunctionArgs) => {
@@ -52,23 +107,23 @@ export const action = async ({ request }: DataFunctionArgs) => {
   ...
 };
 
-export const meta = withSuperJson(({ data, location, params, parentsData }) => {
-  ...
-  return {
-    title: 'Login',
-  };
-});
-
 export default function LoginPage() {
   const actionData = useActionData<typeof action>();
-  // actionData: {
-  //   errors?: Partial<Record<"remember" | requiredKeys<{
-  //       email: string;
-  //       password: string;
-  //       remember: "on" | undefined;
-  //       redirectTo: string;
-  //   }>, string>> | undefined;
-  // }
   ...
+}
+```
+
+```jsx
+/* with remix's useActionData */
+actionData: any
+
+/* remix-supertyped's useActionData */
+actionData: {
+  errors?: Partial<Record<"remember" | requiredKeys<{
+    email: string;
+    password: string;
+    remember: "on" | undefined;
+    redirectTo: string;
+  }>, string>> | undefined;
 }
 ```

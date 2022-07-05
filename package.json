@@ -1,6 +1,6 @@
 {
   "name": "remix-supertyped",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilize superjson and improve end-to-end type safety for Remix",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,7 +27,7 @@
     }
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 120,
     "semi": true,
     "singleQuote": true,
     "trailingComma": "es5"
